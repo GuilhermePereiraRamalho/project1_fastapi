@@ -15,7 +15,7 @@ def sync_converter(from_currency: str, to_currency: str, price: float):
         raise HTTPException(status_code=500, detail=f'Internal error on alpha vantange requests: {error}')
     
     data = response.json()
-    print(data)
+    
     if "Realtime Currency Exchange Rate" not in data:
         raise HTTPException(status_code=400, detail='Probably invalid currencies given')
     
@@ -29,7 +29,7 @@ async def async_converter(from_currency: str, to_currency: str, price: float):
         async with aiohttp.ClientSession() as session:
             async with session.get(url=url) as response:
                 data = await response.json()
-                print(data)
+                
     except Exception as error:
         raise HTTPException(status_code=400, detail=error)
     
