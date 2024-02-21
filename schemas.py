@@ -2,7 +2,7 @@ import re
 from pydantic import BaseModel, Field, validator
 from typing import List
 
-class ConverterImput(BaseModel):
+class ConverterInput(BaseModel):
     price: float = Field(gt=0)
     to_currencies: List[str]
 
@@ -13,3 +13,7 @@ class ConverterImput(BaseModel):
                 raise ValueError(f'Invalid currency {currency}')
         return value
 
+
+class ConverterOutput(BaseModel):
+    message: str
+    data: List[dict]
